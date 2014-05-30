@@ -129,6 +129,12 @@
 ;;; projectile mode
 (projectile-global-mode)
 
+;;; jedi
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
+(setq jedi:tooltip-method nil)
+
+
 ;;; js2-mode
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)) ;;; use it as major mode
 (add-hook 'js2-mode-hook 'ac-js2-mode) ;;; autocomplete pls

@@ -22,6 +22,7 @@
 (depends-on "guide-key")
 (depends-on "handlebars-mode")
 (depends-on "helm")
+(depends-on "jedi")
 (depends-on "js2-mode")
 (depends-on "package-build")
 (depends-on "pallet")
