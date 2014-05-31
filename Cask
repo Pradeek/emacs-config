@@ -19,6 +19,7 @@
 (depends-on "flx-ido")
 (depends-on "flycheck")
 (depends-on "goto-chg")
+(depends-on "grizzl")
 (depends-on "guide-key")
 (depends-on "handlebars-mode")
 (depends-on "helm")

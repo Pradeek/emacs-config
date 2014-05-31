@@ -34,13 +34,13 @@
   (interactive)
   (custom-persp "emacs"
                 (find-file "~/.emacs.d/init.el")))
- 
+
 (define-key persp-mode-map (kbd "C-x p e") 'custom-persp/emacs)
 
 (defun custom-persp-last ()
   (interactive)
   (persp-switch (persp-name persp-last)))
- 
+
 ;; Easily switch to your last perspective
 (define-key persp-mode-map (kbd "C-x x x") 'custom-persp-last)
 
@@ -175,6 +175,7 @@
 
 ;;; projectile mode
 (projectile-global-mode)
+(setq projectile-completion-system 'grizzl)
 
 ;;; jedi
 (add-hook 'python-mode-hook 'jedi:setup)
