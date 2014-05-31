@@ -139,6 +139,15 @@
 (require 'cl)
 (require 'tabbar-ruler)
 
+;;; Smart mode line
+(setq sml/hidden-modes '(" hl-p" " pair" " Undo-Tree" " yas" " Helm" " AC" " Guide" " Wrap" " vl"))
+(setq sml/shorten-directory t)
+(setq sml/shorten-modes t)
+(setq sml/name-width 40)
+(setq sml/mode-width 4)
+(setq sml/theme 'respectful)
+(sml/setup)
+
 ;;; Autopair
 (autopair-global-mode)
 
