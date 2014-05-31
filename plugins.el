@@ -26,6 +26,9 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+;;; monky - mercurial
+(setq monky-process-type 'cmdserver)
+
 ;;; guide-key plugin
 (require 'guide-key)
 (setq guide-key/guide-key-sequence '("C-x" "C-c"))
@@ -56,6 +59,7 @@
   "g" 'ag-project
   "s" 'save-buffer
   "c" 'comment-or-uncomment-region
+  "," 'goto-last-change
   "d" 'kill-this-buffer)
 
 ;;; ESC ALL THE THINGS = <C-g>
@@ -131,9 +135,28 @@
 
 ;;; jedi
 (add-hook 'python-mode-hook 'jedi:setup)
+(add-hook 'python-mode-hook 'jedi:ac-setup)
 (setq jedi:complete-on-dot t)
 (setq jedi:tooltip-method nil)
+(defun jedi-config:setup-keys ()
+      (local-set-key (kbd "M-.") 'jedi:goto-definition)
+      (local-set-key (kbd "M-,") 'jedi:goto-definition-pop-marker)
+      (local-set-key (kbd "M-?") 'jedi:show-doc)
+      (local-set-key (kbd "M-/") 'jedi:get-in-function-call))
 
+
+;;; ipython
+(setq
+ python-shell-interpreter "ipython"
+ python-shell-interpreter-args ""
+ python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+ python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+ python-shell-completion-setup-code
+   "from IPython.core.completerlib import module_completion"
+ python-shell-completion-module-string-code
+   "';'.join(module_completion('''%s'''))\n"
+ python-shell-completion-string-code
+   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
 ;;; js2-mode
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)) ;;; use it as major mode

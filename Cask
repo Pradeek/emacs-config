@@ -24,6 +24,7 @@
 (depends-on "helm")
 (depends-on "jedi")
 (depends-on "js2-mode")
+(depends-on "monky")
 (depends-on "package-build")
 (depends-on "pallet")
 (depends-on "pkg-info")

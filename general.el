@@ -54,5 +54,18 @@
   kept-old-versions 2
   version-control t)
 
+;;; add colors to the shell
+(setq ansi-color-names-vector
+  ["black" "red" "green" "yellow" "PaleBlue" "magenta" "cyan" "white"])
+
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
+;;; fix unicode in terminal
+(add-hook 'term-exec-hook
+          (function
+           (lambda ()
+             (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))))
+
+
 (provide 'general)
 ;;; general.el ends here
