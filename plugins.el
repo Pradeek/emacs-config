@@ -16,6 +16,35 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
+;;; Perspective mode
+(persp-mode)
+; Stolen from http://emacsrookie.com/2011/09/25/workspaces/
+(defmacro custom-persp (name &rest body)
+       `(let ((initialize (not (gethash ,name perspectives-hash)))
+              (current-perspective persp-curr))
+          (persp-switch ,name)
+          (when initialize ,@body)
+          (setq persp-last current-perspective)))
+(defun custom-persp/code ()
+  (interactive)
+  (custom-persp "code"
+  (projectile-switch-project)))
+
+(defun custom-persp/emacs ()
+  (interactive)
+  (custom-persp "emacs"
+                (find-file "~/.emacs.d/init.el")))
+ 
+(define-key persp-mode-map (kbd "C-x p e") 'custom-persp/emacs)
+
+(defun custom-persp-last ()
+  (interactive)
+  (persp-switch (persp-name persp-last)))
+ 
+;; Easily switch to your last perspective
+(define-key persp-mode-map (kbd "C-x x x") 'custom-persp-last)
+
+
 ;;; remember last position in file
 ;;; built-in package
 (require 'saveplace)
@@ -91,7 +120,21 @@
 (setq tabbar-ruler-popup-scrollbar t) ; If you want to only show the
                                       ; scroll bar when your mouse is moving.
 
+;;; Helm
 (helm-mode 1)
+; helm in eshell
+(add-hook 'eshell-mode-hook
+          #'(lambda ()
+              (define-key eshell-mode-map
+                [remap eshell-pcomplete]
+                'helm-esh-pcomplete)))
+(add-hook 'eshell-mode-hook
+           #'(lambda ()
+               (define-key eshell-mode-map
+                 (kbd "M-p")
+                 'helm-eshell-history)))
+
+
 
 (require 'cl)
 (require 'tabbar-ruler)
