@@ -66,6 +66,16 @@
            (lambda ()
              (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))))
 
+;;; make dired better
+(require 'dired)
+(put 'dired-find-alternate-file 'disabled nil)
+(setq dired-recursive-deletes (quote top))
+(define-key dired-mode-map (kbd "f") 'dired-find-alternate-file)
+(define-key dired-mode-map (kbd "n") 'dired-create-directory)
+(define-key dired-mode-map (kbd "M-r") 'dired-run-shell-command)
+(define-key dired-mode-map (kbd "<") (lambda ()
+                                       (interactive)
+                                       (find-alternate-file "..")))
 
 (provide 'general)
 ;;; general.el ends here
