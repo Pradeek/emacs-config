@@ -12,6 +12,8 @@
 (global-visual-line-mode t)
 
 ;;; line numbers for everybody!
+(setq linum-format "  %d  ")
+(set-window-margins nil 2)
 (global-linum-mode t)
 
 ;;; hide scroll bar and toolbar on GUI mode
@@ -23,7 +25,7 @@
 (setq inhibit-startup-message t)
 
 ;;; colorscheme
-(load-theme 'flatland t)
+(load-theme 'solarized-dark t)
 
 ;;; auto-indent
 (setq-default indent-tabs-mode nil)
@@ -39,7 +41,9 @@
 (show-paren-mode 1)
 
 ;;; set font/font size
-(set-frame-font "Source Code Pro-14")
+(set-frame-font "Droid Sans Mono For Powerline-14")
+(setq-default line-spacing 5)
+
 
 ;;; ask y/n instead of yes/no
 (fset 'yes-or-no-p 'y-or-n-p)

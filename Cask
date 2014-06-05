@@ -42,6 +42,7 @@
 (depends-on "skewer-mode")
 (depends-on "smex")
 (depends-on "smart-mode-line")
+(depends-on "solarized-theme")
 (depends-on "switch-window")
 (depends-on "tabbar")
 (depends-on "tabbar-ruler")
